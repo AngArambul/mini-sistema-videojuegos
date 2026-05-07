@@ -6,3 +6,4 @@ pymysql
 cryptography
 sentry-sdk
 requests
+Flask-RESTful
