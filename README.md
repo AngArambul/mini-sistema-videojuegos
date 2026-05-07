@@ -26,3 +26,5 @@ Se implementaron 4 casos de prueba críticos divididos en tres áreas:
 **Problema:** Cómo probar que una ruta está protegida sin tener que simular un navegador.
 **Solución:** Se utilizó el `test_client()` de Flask para capturar los encabezados de respuesta y validar que el servidor enviara una redirección (302) hacia la ruta de login. 
 # Prueba de GitHub Actions
+![CI](https://github.com/AngArambul/mini-sistema-videojuegos/actions/workflows/ci.yml/badge.svg)
+[![Coverage](https://codecov.io/gh/AngArambul/mini-sistema-videojuegos/branch/main/graph/badge.svg)](https://codecov.io/gh/AngArambul/mini-sistema-videojuegos)
