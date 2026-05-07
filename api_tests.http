@@ -1,0 +1,33 @@
+### 1. Obtener todos los juegos
+GET http://127.0.0.1:5000/api/juegos
+Content-Type: application/json
+
+### 2. Crear un juego nuevo 
+POST http://127.0.0.1:5000/api/juegos
+Content-Type: application/json
+
+{
+    "titulo": "The Legend of Zelda",
+    "genero": "Aventura",
+    "plataforma": "Switch"
+}
+
+### 3. Modificamosr un juego existente (PUT /api/juegos/1 - Debería dar 200 OK)
+# Nos segúramde que el ID 1 exista, si no, cambiamos el número del final de la URL
+PUT http://127.0.0.1:5000/api/juegos/12
+Content-Type: application/json
+
+{
+    "titulo": "The Legend of Zelda: Breath of the Wild",
+    "genero": "Mundo Abierto",
+    "plataforma": "Switch"
+}
+
+### 4. Enviar una petición inválida (GET a un juego que no existe -  da un 404 Not Found)
+GET http://127.0.0.1:5000/api/juegos/999
+Content-Type: application/json
+
+### 5. Eliminar un juego (DELETE /api/juegos/1 - Debería dar 204 No Content)
+# Nota: Esto borrará el juego con ID 1.
+DELETE http://127.0.0.1:5000/api/juegos/1
+Content-Type: application/json

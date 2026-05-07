@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main-card">
+    <h2 class="text-center mb-4">Lista de Videojuegos</h2>
+
+    <form action="/agregar" method="POST" class="mb-4 d-flex flex-wrap gap-2">
+        {{ form.hidden_tag() }}
+        {{ form.titulo(class="form-control", placeholder="Título", style="width: auto;") }}
+        {{ form.genero(class="form-control", placeholder="Género", style="width: auto;") }}
+        {{ form.plataforma(class="form-control", placeholder="Plataforma", style="width: auto;") }}
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+
+    <table class="table table-bordered table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th><th>Título</th><th>Género</th><th>Plataforma</th><th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for juego in juegos %}
+            <tr>
+                <td>{{ juego.id }}</td><td>{{ juego.titulo }}</td><td>{{ juego.genero }}</td><td>{{ juego.plataforma }}</td>
+                <td><a href="/eliminar/{{ juego.id }}" class="btn btn-danger btn-sm">Eliminar</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Videojuegos</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body { 
+            /* Fondo */
+            background: url('https://images2.alphacoders.com/274/thumb-1920-274660.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+            color: #e0e0e0; 
+            min-height: 100vh; 
+        }
+        
+        /* Estilo para las tarjetas de contenido principal */
+        .main-card { 
+            background: rgba(10, 15, 30, 0.6); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            color: #ffffff; 
+            padding: 30px; 
+            border-radius: 15px; 
+            border: 1px solid rgba(0, 243, 255, 0.3); 
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.5), 
+                        0px 0px 15px rgba(0, 243, 255, 0.2) inset; 
+            margin-top: 50px;
+        }
+
+        /* Barra de navegación */
+        .navbar {
+            background: rgba(0, 0, 0, 0.7) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #ff00ff; 
+            box-shadow: 0px 4px 15px rgba(255, 0, 255, 0.3);
+        }
+        
+        /* EFECTO BOTÓN */
+        .navbar-brand, .nav-link {
+            color: #00f3ff !important;
+            text-shadow: 0px 0px 8px rgba(0, 243, 255, 0.6);
+            transition: all 0.3s ease-in-out;
+            padding: 8px 16px !important; /* Da la forma rectangular del botón */
+            margin: 0 4px; /* Separa los botones entre sí */
+            border: 1px solid transparent; /* Borde invisible preparatorio */
+            border-radius: 6px; /* Bordes ligeramente redondeados */
+        }
+        
+        .navbar-brand:hover, .nav-link:hover {
+            color: #ffffff !important; /* El texto se ilumina en blanco brillante */
+            text-shadow: 0px 0px 10px #ff00ff, 0px 0px 20px #ff00ff; /* Resplandor magenta en el texto */
+            background: rgba(255, 0, 255, 0.1); /* Fondo cristalino magenta */
+            border: 1px solid #ff00ff; /* Aparece el contorno sólido */
+            box-shadow: 0px 0px 15px rgba(255, 0, 255, 0.6), 
+                        inset 0px 0px 10px rgba(255, 0, 255, 0.3); /* Resplandor del borde hacia afuera y hacia adentro */
+            transform: scale(1.05); /* Salto de tamaño hacia adelante */
+        }
+        /* Estilos para los mensajes flash */
+        .flashes {
+            background-color: rgba(255, 0, 85, 0.15);
+            color: #ff3377;
+            padding: 15px 15px 15px 40px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ff0055;
+            box-shadow: 0px 0px 10px rgba(255, 0, 85, 0.4);
+            text-shadow: 0px 0px 5px rgba(255, 0, 85, 0.5);
+            list-style-type: none;
+        }
+
+        /* --- Estilos globales para inputs y botones en toda la app --- */
+        .form-control, .form-select {
+            background: rgba(0, 0, 0, 0.5) !important;
+            border: 1px solid #00f3ff;
+            color: #00f3ff !important;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            background: rgba(0, 0, 0, 0.8) !important;
+            border-color: #ff00ff;
+            box-shadow: 0px 0px 10px rgba(255, 0, 255, 0.5);
+            color: #ffffff !important;
+        }
+
+        .form-control::placeholder {
+            color: rgba(0, 243, 255, 0.5);
+        }
+
+        .btn-primary {
+            background: transparent;
+            border: 2px solid #00f3ff;
+            color: #00f3ff;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0px 0px 10px rgba(0, 243, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #00f3ff;
+            color: #000;
+            box-shadow: 0px 0px 20px rgba(0, 243, 255, 0.8);
+            border-color: #00f3ff;
+        }
+
+        /* Estilos para textos de títulos */
+        h1, h2, h3 {
+            color: #ffffff;
+            text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Links generales */
+        a { color: #00f3ff; text-decoration: none; }
+        a:hover { color: #ff00ff; text-shadow: 0px 0px 8px rgba(255, 0, 255, 0.6); }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Videojuegos</a>
+                <div class="navbar-nav ms-auto">
+                    {% if current_user.is_authenticated %}
+                        <a class="nav-link" href="{{ url_for('profile') }}">Perfil</a>
+                        <a class="nav-link" href="{{ url_for('auth.logout') }}">Cerrar Sesión</a>
+                    {% else %}
+                        <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                        <a class="nav-link" href="{{ url_for('auth.register') }}">Registro</a>
+                    {% endif %}
+                </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for m in messages %}
+                    <li>{{ m }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

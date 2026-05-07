@@ -1,0 +1,18 @@
+ZeroDivisionError: division by zero
+Exception on /prueba-500 [GET]
+Traceback (most recent call last):
+  File "C:\Users\angel\OneDrive\Escritorio\Septimo Semestre\Desarrollo de Bases de Datos Para Web\Proyectos_Python\mini_sistema_videojuegos\venv\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\angel\OneDrive\Escritorio\Septimo Semestre\Desarrollo de Bases de Datos Para Web\Proyectos_Python\mini_sistema_videojuegos\venv\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\angel\OneDrive\Escritorio\Septimo Semestre\Desarrollo de Bases de Datos Para Web\Proyectos_Python\mini_sistema_videojuegos\venv\Lib\site-packages\flask_restful\__init__.py", line 298, in error_router
+    return original_handler(e)
+  File "C:\Users\angel\OneDrive\Escritorio\Septimo Semestre\Desarrollo de Bases de Datos Para Web\Proyectos_Python\mini_sistema_videojuegos\venv\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\angel\OneDrive\Escritorio\Septimo Semestre\Desarrollo de Bases de Datos Para Web\Proyectos_Python\mini_sistema_videojuegos\venv\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\angel\OneDrive\Escritorio\Septimo Semestre\Desarrollo de Bases de Datos Para Web\Proyectos_Python\mini_sistema_videojuegos\app.py", line 121, in prueba_500
+    resultado = 1 / 0
+                ~~^~~
+ZeroDivisionError: division by zero
